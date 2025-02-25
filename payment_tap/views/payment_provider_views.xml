@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_provider_form" model="ir.ui.view">
+        <field name="name">Tap Provider Form</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form" />
+        <field name="arch" type="xml">
+            <group name='provider_credentials' position='inside'>
+                <group invisible="code != 'tap'">
+                    <field
+                        name="tap_publishable_key"
+                        required="code == 'tap' and state != 'disabled'" />
+                    <field
+                        name="tap_secret_key"
+                        password="True"
+                        required="code == 'tap' and state != 'disabled'" />
+                    <field
+                        name="tap_payment_options"
+                        required="code == 'tap' and state != 'disabled'" />
+                    <field
+                        name="tap_use_3d_secure"
+                        required="code == 'tap' and state != 'disabled'" />
+                    <a href='https://tappayments.api-docs.io/2.0/testing' target="_blank"><i class="fa fa-arrow-right" /> Test Credentials</a>
+                </group>
+                <span class="text-muted font-weight-bold" invisible="code != 'tap'">
+                    <p>**********************************************************************************************************</p>
+                    <p style="font-size: 18px;" class="text-center">Supported Currencies</p>
+                    <p />
+                    <p>Card Payment = "AED", "BHD", "EGP", "EUR", "GBP", "KWD", "OMR", "QAR", "SAR", "USD"</p>
+                    <p>KNET Payment = "KWD"</p>
+                    <p>MADA Card Payment = "SAR"</p>
+                    <p>BENEFIT Payment = "BHD"</p>
+                    <p>Oman Net Payment = "OMR"</p>
+                    <p>Apple Pay = "It supports only with the pre-configured apple pay devices"</p>
+                    <p>**********************************************************************************************************</p>
+                </span>
+            </group>
+        </field>
+    </record>
+    <record id="payment_transaction_form" model="ir.ui.view">
+        <field name="name">payment.transaction.form.tap</field>
+        <field name="model">payment.transaction</field>
+        <field name="inherit_id" ref="payment.payment_transaction_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_message']//.." position="before">
+                <group string='Charge Details' invisible="provider_code != 'tap'">
+                    <field
+                        name="tap_payment_method"
+                        string="Payment Method" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <record id="payment_token_form" model="ir.ui.view">
+        <field name="name">Tap Token Form</field>
+        <field name="model">payment.token</field>
+        <field name="inherit_id" ref="payment.payment_token_form"/>
+        <field name="arch" type="xml">
+            <field name="provider_ref" position="after">
+                <field
+                    name="provider_code"
+                    invisible="1"/>
+                <field
+                    name="tap_customer_id"
+                    invisible="provider_code != 'tap'"/>
+            </field>
+        </field>
+    </record>
+</odoo>

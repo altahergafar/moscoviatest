@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="payment_method_tap" model="payment.method">
+        <field name="name">Tap</field>
+        <field name="code">tap</field>
+        <field name="sequence">1000</field>
+        <field name="active">False</field>
+        <field name="image" type="base64" file="payment_tap/static/description/icon.png"/>
+        <field name="support_tokenization">True</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund">partial</field>
+        <field name="supported_country_ids" eval="False" />
+        <field name="supported_currency_ids"
+            eval="[Command.set([
+                ref('base.AED'),
+                ref('base.BHD'),
+                ref('base.EGP'),
+                ref('base.EUR'),
+                ref('base.GBP'),
+                ref('base.KWD'),
+                ref('base.OMR'),
+                ref('base.QAR'),
+                ref('base.SAR'),
+                ref('base.USD')
+            ])]"
+        />
+    </record>
+    <record id="payment_provider_tap" model="payment.provider">
+        <field name="name">Tap</field>
+        <field name="image_128" type="base64" file="payment_tap/static/description/icon.png" />
+        <field name="code">tap</field>
+        <field name="module_id" ref="base.module_payment_tap"/>
+        <field name="redirect_form_view_id" ref="redirect_form" />
+        <field name="tap_secret_key">sk_test_XKokBfNWv6FIYuTMg5sLPjhJ</field>
+        <field name="tap_publishable_key">pk_test_EtHFV4BuPQokJT6jiROls87Y</field>
+         <field name="payment_method_ids"
+            eval="[Command.set([ref('payment_tap.payment_method_tap')])]"
+        />
+    </record>
+</odoo>
