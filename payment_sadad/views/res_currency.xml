@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- res.currency inherit form view -->
+    <record id="res_currency_form_view_extended" model="ir.ui.view">
+        <field name="name">res.currency.inherit.view.form</field>
+        <field name="model">res.currency</field>
+        <field name="inherit_id" ref="base.view_currency_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='rates']/field[@name='rate_ids']" position="replace">
+                <field name="rate_ids" widget="one2many">
+                    <tree string="Rates"  editable="top" limit="25">
+                        <field name="name"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="company_rate" digits="[12,3]"/>
+                        <field name="inverse_company_rate" digits="[12,3]"/>
+                        <field name="rate" digits="[12,3]" optional="hide"/>
+                        <field name="write_date" optional="hide"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+</odoo>

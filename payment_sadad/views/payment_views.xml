@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="payment_acquirer_form" model="ir.ui.view">
+        <field name="name">payment.provider.inherit.form.view</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="provider_credentials"]' position='inside'>
+                <group invisible="code != 'sadad'">
+                    <field name="sadad_merchant_id" required="code == 'sadad' and state != 'disabled'"/>
+                    <field name="sadad_api_key" required="code == 'sadad' and state != 'disabled'"/>
+                    <field name="sadad_domain" required="code == 'sadad' and state != 'disabled'"/>
+                    <field name="base_url" required="code == 'sadad' and state != 'disabled'"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

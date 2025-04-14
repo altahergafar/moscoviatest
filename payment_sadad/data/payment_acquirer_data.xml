@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="0">
+
+    <record id="payment_method_apple_pay" model="payment.method">
+        <field name="name">apple_pay</field>
+        <field name="code">apple_pay</field>
+        <field name="sequence">1000</field>
+        <field name="image" type="base64" file="payment/static/img/apple_pay.png"/>
+        <field name="support_tokenization">False</field>
+        <field name="support_express_checkout">False</field>
+        <field name="support_refund"></field>
+    </record>
+
+    <record id="payment_acquirer_sadad" model="payment.provider">
+        <field name="name">Sadad</field>
+        <!--        <field name="display_as">Credit Card (powered by Sadad)</field>-->
+        <field name="image_128" type="base64" file="payment_sadad/static/description/icon.png"/>
+        <field name="module_id" ref="base.module_payment_sadad"/>
+        <field name="payment_method_ids"
+               eval="[(6, 0, [
+                         ref('payment.payment_method_card'),
+                         ref('payment.payment_method_mastercard'),
+                         ref('payment.payment_method_visa'),
+                         ref('payment_sadad.payment_method_apple_pay'),
+                     ])]"
+        />
+
+       
+        <field name="code">sadad</field>
+        <field name="redirect_form_view_id" ref="redirect_form"/>
+        <field name="support_tokenization">False</field>
+    </record>
+    <record id="payment_method_sadad" model="account.payment.method">
+        <field name="name">sadad</field>
+        <field name="code">sadad</field>
+        <field name="payment_type">inbound</field>
+    </record>
+</odoo>

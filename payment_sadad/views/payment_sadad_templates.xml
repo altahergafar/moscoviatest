@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="redirect_form">
+            <form action="https://sadadqa.com/webpurchase" method="post" id="sadad_payment_form" name="gosadad">
+                <input type="hidden" name="merchant_id" id="merchant_id" t-att-value="merchant_id"/>
+                <input type="hidden" name="ORDER_ID" id="ORDER_ID" t-att-value="ORDER_ID"/>
+                <input type="hidden" name="WEBSITE" id="WEBSITE" t-att-value="WEBSITE"/>
+                <input type="hidden" name="TXN_AMOUNT" id="TXN_AMOUNT" t-att-value="TXN_AMOUNT"/>
+                <input type="hidden" name="CUST_ID" id="CUST_ID" t-att-value="CUST_ID"/>
+                <input type="hidden" name="EMAIL" id="EMAIL" t-att-value="EMAIL"/>
+                <input type="hidden" name="MOBILE_NO" id="MOBILE_NO" t-att-value="MOBILE_NO"/>
+                <input type="hidden" name="SADAD_WEBCHECKOUT_PAGE_LANGUAGE" id="SADAD_WEBCHECKOUT_PAGE_LANGUAGE" t-att-value="SADAD_WEBCHECKOUT_PAGE_LANGUAGE"/>
+                <input type="hidden" name="CALLBACK_URL" id="CALLBACK_URL" t-att-value="CALLBACK_URL"/>
+                <input type="hidden" name="txnDate" id="txnDate" t-att-value="txnDate"/>
+                <input type="hidden" name="productdetail[0][order_id]" t-att-value="order_id"/>
+                <input type="hidden" name="productdetail[0][itemname]" t-att-value="itemname"/>
+                <input type="hidden" name="productdetail[0][amount]" t-att-value="amount"/>
+                <input type="hidden" name="productdetail[0][quantity]" t-att-value="quantity"/>
+                <input type="hidden" name="productdetail[0][type]" t-att-value="type"/>
+                <input type="hidden" name="checksumhash" t-att-value="checksum"/>
+            </form>
+        </template>
+    </odoo>
