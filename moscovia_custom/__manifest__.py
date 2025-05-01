@@ -16,7 +16,5 @@
         'views/stock.xml',
     ],
     'installable': True,
-    'application': False,
-    'auto_install': False,
-    'post_init_hook': '_setup_module',
+
 }
